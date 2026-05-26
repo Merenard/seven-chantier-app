@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f6f2" />
+    <title>SEVEN Chantier - Plans d'execution</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navigation principale">
+        <div class="brand">
+          <img src="./03-design/assets/logo-seven-at-home-cropped-transparent.png" alt="SEVEN AT HOME" />
+          <div>
+            <strong>SEVEN Chantier</strong>
+            <span>Execution maison individuelle</span>
+          </div>
+        </div>
+
+        <nav class="rail" aria-label="Modules">
+          <button class="nav-button active" data-view="dashboard" type="button">
+            <span aria-hidden="true">⌂</span>
+            <span>Tableau de bord</span>
+          </button>
+          <button class="nav-button" data-view="plans" type="button">
+            <span aria-hidden="true">□</span>
+            <span>Plans PDF</span>
+          </button>
+          <button class="nav-button" data-view="trades" type="button">
+            <span aria-hidden="true">☷</span>
+            <span>Corps d'etat</span>
+          </button>
+          <button class="nav-button" data-view="access" type="button">
+            <span aria-hidden="true">◉</span>
+            <span>Acces chantier</span>
+          </button>
+          <button class="nav-button" data-view="print" type="button">
+            <span aria-hidden="true">↧</span>
+            <span>Dossiers PDF</span>
+          </button>
+        </nav>
+
+        <section class="sidebar-panel">
+          <span class="eyebrow">Projet actif</span>
+          <select id="projectSelect" aria-label="Choisir un chantier"></select>
+          <button class="ghost-button" id="newProjectButton" type="button">Nouveau chantier</button>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Ouvrir la navigation">
+            <span aria-hidden="true">☰</span>
+          </button>
+          <div>
+            <span class="eyebrow">Espace architecte expert</span>
+            <h1 id="pageTitle">Tableau de bord</h1>
+          </div>
+          <div class="topbar-actions">
+            <label class="role-switch">
+              <span>Role</span>
+              <select id="roleSelect" aria-label="Changer de role">
+                <option value="architecte">Architecte</option>
+                <option value="artisan">Artisan</option>
+                <option value="administratif">Administratif</option>
+              </select>
+            </label>
+            <button class="primary-button" id="printCurrentButton" type="button">Generer PDF</button>
+          </div>
+        </header>
+
+        <section class="mobile-project">
+          <label>
+            <span>Chantier</span>
+            <select id="mobileProjectSelect" aria-label="Choisir un chantier sur mobile"></select>
+          </label>
+        </section>
+
+        <section class="view active" id="dashboardView" data-view-panel="dashboard"></section>
+        <section class="view" id="plansView" data-view-panel="plans"></section>
+        <section class="view" id="tradesView" data-view-panel="trades"></section>
+        <section class="view" id="accessView" data-view-panel="access"></section>
+        <section class="view" id="printView" data-view-panel="print"></section>
+      </main>
+    </div>
+
+    <nav class="mobile-tabs" aria-label="Navigation mobile">
+      <button class="nav-button active" data-view="dashboard" type="button">
+        <span aria-hidden="true">⌂</span>
+        <span>Accueil</span>
+      </button>
+      <button class="nav-button" data-view="plans" type="button">
+        <span aria-hidden="true">□</span>
+        <span>Plans</span>
+      </button>
+      <button class="nav-button" data-view="trades" type="button">
+        <span aria-hidden="true">☷</span>
+        <span>Lots</span>
+      </button>
+      <button class="nav-button" data-view="access" type="button">
+        <span aria-hidden="true">◉</span>
+        <span>Acces</span>
+      </button>
+    </nav>
+
+    <dialog class="project-dialog" id="projectDialog">
+      <form method="dialog" id="projectForm">
+        <header>
+          <div>
+            <span class="eyebrow">Creation chantier</span>
+            <h2>Nouveau chantier</h2>
+          </div>
+          <button class="icon-button" value="cancel" type="submit" aria-label="Fermer">
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <label>
+          <span>Nom du chantier</span>
+          <input name="name" required value="Maison individuelle - Nouveau chantier" />
+        </label>
+        <label>
+          <span>Adresse</span>
+          <input name="address" required value="Adresse a completer" />
+        </label>
+        <div class="form-grid">
+          <label>
+            <span>Surface</span>
+            <input name="surface" value="145 m2" />
+          </label>
+          <label>
+            <span>Phase</span>
+            <select name="phase">
+              <option>Preparation chantier</option>
+              <option>Gros oeuvre</option>
+              <option>Second oeuvre</option>
+              <option>Finitions</option>
+              <option>Reception</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          <span>Hypotheses techniques connues</span>
+          <textarea name="notes" rows="4">Maison individuelle neuve. Plans architecte a importer. Verifier etude de sol G2 avant fondations.</textarea>
+        </label>
+        <footer>
+          <button class="ghost-button" value="cancel" type="submit">Annuler</button>
+          <button class="primary-button" value="default" type="submit">Creer</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="member-dialog" id="memberDialog">
+      <form method="dialog" id="memberForm">
+        <header>
+          <div>
+            <span class="eyebrow">Acces par chantier</span>
+            <h2>Inviter une personne</h2>
+          </div>
+          <button class="icon-button" value="cancel" type="submit" aria-label="Fermer">
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <label>
+          <span>Email</span>
+          <input name="email" type="email" required placeholder="artisan@entreprise.fr" />
+        </label>
+        <div class="form-grid">
+          <label>
+            <span>Role</span>
+            <select name="role">
+              <option value="Artisan">Artisan</option>
+              <option value="Administratif">Administratif</option>
+              <option value="Architecte">Architecte</option>
+              <option value="Maitre d'ouvrage">Maitre d'ouvrage</option>
+            </select>
+          </label>
+          <label>
+            <span>Lot affecte</span>
+            <select name="trade" id="memberTradeSelect"></select>
+          </label>
+        </div>
+        <footer>
+          <button class="ghost-button" value="cancel" type="submit">Annuler</button>
+          <button class="primary-button" value="default" type="submit">Ajouter</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <template id="printTemplate">
+      <article class="print-page"></article>
+    </template>
+
+    <div id="printArea" aria-hidden="true"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
