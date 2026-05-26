@@ -12,6 +12,14 @@ La V1 permet de:
 
 ## Lancer localement
 
+Option simple sur Windows:
+
+```powershell
+.\lancer-app.cmd
+```
+
+Ou manuellement:
+
 ```powershell
 node tools/dev-static-server.cjs
 ```
