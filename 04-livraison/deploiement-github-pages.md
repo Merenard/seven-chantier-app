@@ -14,9 +14,9 @@ L'application est une V1 statique, deployable sur GitHub Pages:
 1. Creer un depot GitHub.
 2. Pousser le dossier `seven-group-app` dans ce depot.
 3. Dans GitHub, ouvrir `Settings > Pages`.
-4. Choisir `Deploy from a branch`.
-5. Source: branche `main`, dossier `/root`.
-6. Enregistrer puis attendre la publication.
+4. Choisir `GitHub Actions` comme source si GitHub le demande.
+5. Le workflow `.github/workflows/deploy-pages.yml` publie automatiquement le site depuis la branche `main`.
+6. Attendre la fin de l'action `Deploy GitHub Pages`.
 
 L'URL attendue est de type:
 
