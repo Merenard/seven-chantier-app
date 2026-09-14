@@ -1,0 +1,28 @@
+{
+  "name": "seven-content-radar",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/main.js",
+    "serve": "node src/cli.js serve",
+    "poll": "node src/cli.js poll",
+    "tick": "node src/cli.js tick",
+    "apify:probe": "node src/cli.js probe",
+    "e2e": "node scripts/e2e.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": "true",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.125.0",
+    "apify": "^3.7.2",
+    "apify-client": "^2.25.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

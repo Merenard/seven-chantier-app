@@ -1,0 +1,25 @@
+{
+  "title": "Seven Content Radar",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": {
+      "title": "Mode",
+      "type": "string",
+      "description": "tick = cycle de collecte (défaut hors standby) · trigger = appelle l'instance standby (à utiliser dans les Schedules) · digest · weekly · probe = test réel des Actors et mapping des champs · setup = webhook Telegram + commandes · serve = serveur HTTP",
+      "enum": ["tick", "trigger", "digest", "weekly", "probe", "setup", "serve"],
+      "default": "tick",
+      "editor": "select"
+    },
+    "job": {
+      "title": "Job (mode trigger)",
+      "type": "string",
+      "enum": ["tick", "digest", "weekly"],
+      "default": "tick",
+      "editor": "select"
+    },
+    "force": { "title": "Forcer (digest)", "type": "boolean", "default": false },
+    "usernames": { "title": "Usernames (probe)", "type": "array", "editor": "stringList", "default": ["stephane.mdg"] },
+    "reelUrl": { "title": "URL de Reel (probe)", "type": "string", "editor": "textfield" }
+  }
+}

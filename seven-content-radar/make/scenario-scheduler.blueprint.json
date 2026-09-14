@@ -1,0 +1,60 @@
+{
+  "name": "Seven Content Radar — Scheduler (07:00 / 13:00 / 19:00 / 23:00 Paris)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": { "handleErrors": true, "useNewZLibDeCompress": true },
+      "mapper": {
+        "url": "{{RADAR_BASE_URL}}/jobs/tick",
+        "method": "post",
+        "headers": [{ "name": "Authorization", "value": "Bearer {{RADAR_JOBS_SECRET}}" }],
+        "qs": [],
+        "bodyType": "raw",
+        "contentType": "application/json",
+        "data": "{\"reason\":\"schedule\"}",
+        "parseResponse": true,
+        "timeout": "40",
+        "shareCookies": false,
+        "followRedirect": true,
+        "followAllRedirects": false,
+        "rejectUnauthorized": true,
+        "useMtls": false
+      },
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "url", "type": "url", "label": "URL", "required": true },
+          { "name": "method", "type": "select", "label": "Method" },
+          { "name": "headers", "type": "array", "label": "Headers" },
+          { "name": "bodyType", "type": "select", "label": "Body type" },
+          { "name": "data", "type": "buffer", "label": "Request content" }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": { "orphans": [] },
+    "zone": "eu1.make.com",
+    "notes": [
+      "Planification : onglet Scheduling du scénario → 'Every day' → heures 07:00, 13:00, 19:00, 23:00, fuseau Europe/Paris.",
+      "Remplacer {{RADAR_BASE_URL}} par l'URL standby de l'Actor Apify (https://<actor>.apify.actor) et {{RADAR_JOBS_SECRET}} par le secret RADAR_JOBS_SECRET (à stocker dans une variable de scénario ou un Custom Variable Make, jamais en clair dans une note).",
+      "Le digest quotidien et le rapport hebdomadaire sont déclenchés automatiquement par le tick de 07:00 (lundi pour l'hebdo) — aucun scénario supplémentaire nécessaire."
+    ]
+  }
+}

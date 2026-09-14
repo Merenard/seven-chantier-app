@@ -1,0 +1,52 @@
+{
+  "name": "Seven Content Radar — Telegram webhook bridge (optionnel)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": { "hook": 0, "maxResults": 1 },
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": { "parameters": { "hook": { "label": "seven-content-radar-telegram" } } },
+        "parameters": [{ "name": "hook", "type": "hook:gateway-webhook", "label": "Webhook", "required": true }]
+      }
+    },
+    {
+      "id": 2,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": { "handleErrors": true, "useNewZLibDeCompress": true },
+      "mapper": {
+        "url": "{{RADAR_BASE_URL}}/telegram",
+        "method": "post",
+        "headers": [{ "name": "X-Telegram-Bot-Api-Secret-Token", "value": "{{TELEGRAM_WEBHOOK_SECRET}}" }],
+        "qs": [],
+        "bodyType": "raw",
+        "contentType": "application/json",
+        "data": "{{toString(1.`__IMTJSON__`)}}",
+        "parseResponse": true,
+        "timeout": "40",
+        "shareCookies": false,
+        "followRedirect": true,
+        "followAllRedirects": false,
+        "rejectUnauthorized": true,
+        "useMtls": false
+      },
+      "metadata": { "designer": { "x": 300, "y": 0 }, "restore": {}, "expect": [{ "name": "url", "type": "url", "label": "URL", "required": true }] }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": { "roundtrips": 1, "maxErrors": 3, "autoCommit": true, "autoCommitTriggerLast": true, "sequential": false, "confidential": false, "dataloss": false, "dlq": false, "freshVariables": false },
+    "designer": { "orphans": [] },
+    "zone": "eu1.make.com",
+    "notes": [
+      "Utile uniquement si vous voulez que Telegram passe par Make (journal des updates dans Make). Par défaut, le webhook Telegram pointe directement sur l'Actor Apify (mode setup) et ce scénario n'est pas nécessaire.",
+      "Si utilisé : enregistrer le webhook Telegram sur l'URL du webhook Make (setWebhook), puis Make relaie l'update JSON tel quel vers {{RADAR_BASE_URL}}/telegram avec le secret.",
+      "Le module Webhook doit être configuré en 'JSON pass-through' (Advanced settings → 'Get request headers/body' → raw body) pour que le corps soit relayé sans transformation."
+    ]
+  }
+}
