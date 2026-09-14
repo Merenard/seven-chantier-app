@@ -1,0 +1,12 @@
+{
+  "actorSpecification": 1,
+  "name": "seven-content-radar",
+  "title": "Seven Content Radar",
+  "description": "Veille Instagram conversationnelle, analyse IA des commentaires et adaptation éditoriale Seven, pilotée depuis Telegram.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "usesStandbyMode": true,
+  "input": "./input_schema.json",
+  "dockerfile": "../Dockerfile",
+  "environmentVariables": {}
+}
