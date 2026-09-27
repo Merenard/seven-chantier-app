@@ -1,6 +1,6 @@
 # Loup Glacé Royale 3D : prototype
 
-Version 3D (three.js) du prototype, rendu pixel art, avec vestiaire de création de personnage. Un seul fichier : `index.html` (logos intégrés).
+Version 3D (three.js) du prototype, rendu doux façon film d’animation (lumière chaude, contre-jour, grands yeux expressifs), avec vestiaire de création de personnage. Un seul fichier : `index.html` (logos intégrés).
 Ouvrir dans un navigateur récent, mobile ou ordinateur. Connexion internet requise (moteur 3D chargé depuis un CDN).
 
 ## Mouvements
@@ -22,7 +22,7 @@ Panneaux : MVP ROOM, J2R, JuL (sources dans `assets/`). L'écran de fin affiche 
 vues, secondes à l'écran, objets pris. Autorisation écrite des marques requise avant toute diffusion publique.
 
 ## Vestiaire
-Avant chaque partie : pseudo (10 caractères), couleur de veste, pantalon, peau, chapeau (bonnet, casquette,
+Avant chaque partie : pseudo (10 caractères), couleur de veste, pantalon, peau, couleur des yeux, chapeau (bonnet, casquette,
 oreilles de lapin, couronne, cheveux), yeux (ronds, joyeux, masque de ski, lunettes), accessoire (écharpe,
 cape, sac à dos) et leurs couleurs. Bouton « Hasard ». Le look est gardé sur l'appareil (stockage local).
 Un joueur transformé en loup garde son chapeau et son accessoire.
